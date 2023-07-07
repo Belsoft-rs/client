@@ -1,0 +1,26 @@
+<template name="Tpl_auth">
+	<div class="auth">
+		<h1>Diffy</h1>
+
+		<h3>Enter your mnemonic phrase</h3>
+		<div>
+			<input class="phrase" value="{{m.phrase}}" placeholder="Your phrase">
+		</div>
+
+		<button onclick="self.auth();">Auth</button>
+	</div>
+</template>
+
+
+<template name="Tpl_register">
+	<div class="auth">
+		<h1>Diffy</h1>
+
+		<h3>Register new username</h3>
+		<div>
+			<input class="phrase" value="{{m.username}}" placeholder="Your username">
+		</div>
+
+		<button onclick="self.register();">Register</button>
+	</div>
+</template>

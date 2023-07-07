@@ -1,0 +1,131 @@
+x-tpl_chat {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-gap: 0;
+	padding: 0;
+	grid-template-rows: 50px auto 40px;
+	grid-template-columns: auto 60px;
+	grid-template-areas: 'chatInfo chatInfo' 'chatHistory chatHistory' 'chatMessage chatSend' ;
+}
+
+x-tpl_chat .info {
+	grid-area: chatInfo;
+	display: block;
+}
+
+x-tpl_chat .history {
+	grid-area: chatHistory;
+	display: block;
+	width: 800px;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+x-tpl_chat .message {
+	grid-area: chatMessage;
+	display: block;
+	margin-left: 1px;
+}
+
+x-tpl_chat .message input {
+	background: #151126;
+	width: 100%;
+	padding: 10px 20px;
+	font-size: 16px;
+	box-sizing: border-box;
+	border: 0;
+	color: white;
+	outline: none;
+}
+
+x-tpl_chat .message input:focus::placeholder {
+	color: #333;
+}
+
+
+x-tpl_chat .send {
+	grid-area: chatSend;
+	display: block;
+}
+
+x-tpl_chat .send button {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	color: cornflowerblue;
+	background: #151126;
+}
+
+div.fromAddress, div.toAddress {
+	margin-top:10px;
+}
+
+.historyMessage {
+	padding: 10px 20px;
+	width: 450px;
+	border-radius: 8px;
+	box-sizing: border-box;
+	text-align: left;
+	display: inline-block;
+	margin: 5px 10px;
+	color: white;
+}
+
+.historyMessage .status {
+	color: yellow;
+}
+
+.historyMessage.isMy {
+	float: right;
+	background: #291c6b;
+}
+.historyMessage.isNotMy {
+	float: left;
+	background: #16102d;
+}
+
+/*
+#message, #fromAddress, #toAddress {
+	width:500px;
+	padding:5px;
+	border: 1px solid #222;
+	border-radius: 4px;
+	background: #666;
+}
+.date {
+	font-size: 10px;
+	color: gray;
+	margin-bottom: 10px;
+}
+
+
+label {
+	text-align: left;
+	display:inline-block;
+	width: 100px;
+}
+div.history {
+	margin: 10px auto;
+	padding: 10px;
+	box-sizing: border-box;
+	width: 600px;
+	height: 500px;
+	border: 1px solid #222;
+	border-radius: 4px;
+	overflow-y: scroll;
+	background: url("https://qph.fs.quoracdn.net/main-qimg-8b585fb4a5c9fedbb899cfb0cf0331a7");
+}
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px #000;
+	background: #0b0e17;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 6px;
+	-webkit-box-shadow: inset 0 0 6px #555;
+}*/

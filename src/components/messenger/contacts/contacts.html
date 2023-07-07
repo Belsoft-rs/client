@@ -1,0 +1,31 @@
+<template name="Tpl_contacts">
+	<input value="{{m.search}}" class="search" placeholder="Search">
+	<div class="contacts" name="contactList"></div>
+	<span class="contactNew link" onclick="self.create();">Add new contact</span>
+</template>
+
+
+<template name="Tpl_contact_item">
+	<div class="contact" onclick="self.select(m);">
+		<div class="logo">{{m.name}}</div>
+		<div class="data">
+			<div class="name">{{m.name}}</div>
+			<div class="address">{{m.address}}</div>
+		</div>
+	</div>
+</template>
+
+
+<template name="Tpl_newContact">
+	<div>
+		<span>Username</span>
+		<input value="{{m.username}}">
+	</div>
+	<div>
+		<span>Save as </span>
+		<input value="{{m.name}}">
+	</div>
+	<div>
+		<button onclick="self.saveContact();">Add</button>
+	</div>
+</template>

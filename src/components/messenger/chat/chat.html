@@ -1,0 +1,15 @@
+<template name="Tpl_chat">
+	<div class="info" name="info" style="display: none;">
+		<div>{{m.contact.name}}</div>
+		<div>{{m.contact.address}}</div>
+	</div>
+	<div class="history" name="history"></div>
+
+	<div class="message" style="display: {{m.enabled ? 'block': 'none'}}">
+		<input type="text" placeholder="Write a message..." value="{{m.msg}}" onkeydown="self.onKeydown(e);">
+	</div>
+	<div class="send" style="display: {{m.enabled ? 'block': 'none'}}">
+		<button onclick="self.send();">Send</button>
+	</div>
+</template>
+

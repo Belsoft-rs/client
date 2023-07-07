@@ -1,0 +1,58 @@
+x-popup .wrapper {
+	display: block;
+	position: absolute;
+	z-index: 100;
+	left: 50%;
+	top: 50%;
+	background: #151126;
+	padding: 20px;
+	color: silver;
+	font-size: 14px;
+}
+
+x-popup .mask {
+	display: block;
+	position: absolute;
+	z-index: 99;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: black;
+	opacity: 0.6;
+}
+
+x-popup .close {
+	color: #666479;
+	position: absolute;
+	right: 5px;
+	top: 1px;
+	cursor: default;
+}
+
+x-popup .close:hover {
+	color: #ddd;
+}
+
+x-popup input {
+	display: block;
+	background: rgb(34, 27, 54);
+	border-radius: 2px;
+	border: 0px;
+	padding: 5px 10px;
+	font-size: 12px;
+	color: white;
+	margin: 3px 0 15px;
+	width: 180px;
+}
+
+x-popup button {
+	margin-top: 20px;
+	width: 100%;
+	height: 50px;
+	border: 0;
+	color: white;
+	font-size: 16px;
+	background: #2e1f92;
+	border-radius: 4px;
+}
