@@ -1,9 +1,27 @@
+![Diffy chat pic narrow](https://github.com/Belsoft-rs/diffychat-client/assets/126072104/1f26a3c7-020d-4daa-ad3c-85dd5b6f144a)
+
 # Intro
 
-This library allows you to establish p2p connections between polkadot accounts and instantly exchange data in both directions.
+Diffy Chat aims to provide a solution to the aforementioned challenges by developing a decentralized messenger that eliminates the need for a centralized backend. Instead, it utilizes a decentralized network powered by blockchain technology, specifically leveraging the capabilities of the Polkadot ecosystem. This approach ensures that sensitive data is securely transferred between parties without being stored in a vulnerable central repository.
+
+This project is held by BelSoft Dev under the W3F grants program hence Diffy Chat is developed as a Substrate pallet and potentially — as a parachain in the Polkador ecosystem.
+
+One of the key features of Diffy Chat is its utilization of personal Polkadot wallet credentials for initiating chats and messaging. This adds an extra layer of security by leveraging the cryptographic capabilities with ed25519 algorithm implemented in the DOTRTC library. Users can authenticate themselves using their personal wallet credentials, ensuring that only authorized parties can initiate conversations and access the shared messages.
+
+The Diffy Chat dapp caters to a broad audience that requires secure private channels for exchanging messages. Various industries (e.g. medical institutions providing remote telemedicine services; financial sector (DeFi as well as CeFi) providing personal support for internet users; corporate channelstransmitting sensitive information between remote divisions) can benefit from Diffy Chat’s secure messaging capabilities. The dapp ensures that personal and critical data remains protected from unauthorized access during interactions and communications between counterparties.
+
+Benefits brought by Diffy Chat:
+
+- Enhanced Security: Diffy Chat’s decentralized architecture eliminates the vulnerabilities associated with centralized databases.
+- Data Privacy: users can have greater confidence in the privacy of their conversations.
+- Data Control: Diffy Chat empowers users by allowing them to maintain control over their own data.
+- Seamless Integration: the decentralized nature of Diffy Chat doesn’t require users to rely on any specific centralized service provider. This allows for easy integration with existing systems and workflows, providing a smooth user experience.
+
+Diffy Chat represents a significant step forward in secure messaging solutions by utilizing the power of decentralized technologies. By eliminating centralized databases and utilizing personal Polkadot wallet credentials, Diffy Chat makes it a compelling choice for organizations and individuals seeking to protect their sensitive information during communication and interaction.
 
 # Usage:
 
+This library allows you to establish p2p connections between polkadot accounts and instantly exchange data in both directions.
 You can create a DOTRTC instance with the necessary settings and specify event handlers (connection request, successful connection, disconnection):
 
     const p2p = new DOTRTC({
