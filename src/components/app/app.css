@@ -36,3 +36,22 @@ body {
 ::-webkit-scrollbar-thumb {
 	background-color: #4c4956;
 }
+
+button {
+	height: 50px;
+	border: 0;
+	color: white;
+	font-size: 16px;
+	background: #2e1f92;
+	border-radius: 4px;
+	padding: 0 40px;
+	box-sizing: border-box;
+}
+
+button:hover {
+	background: #302298;
+}
+
+button:disabled {
+	opacity: 0.5;
+}

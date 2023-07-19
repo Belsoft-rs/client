@@ -1,15 +1,29 @@
 <template name="Tpl_chat">
-	<div class="info" name="info" style="display: none;">
-		<div>{{m.contact.name}}</div>
-		<div>{{m.contact.address}}</div>
+	<div class="info" name="info">
+		<div>{{ m.serviceData.contact.name }}</div>
+		<div class="address">{{ m.serviceData.contact.address }}</div>
+		<div class="status {{ m.serviceData.connectionStatus }}">● {{ m.serviceData.connectionStatus }}</div>
+
+		<div class="connectionConfirm" style="display: {{ m.serviceData.connectionStatus === 'connectionRequest' ? 'block' : 'none'  }}">
+			The user is trying to contact you
+			<button onclick="self.connectionAccept();">Allow</button>
+			<button onclick="self.connectionDecline();">Decline</button>
+		</div>
 	</div>
 	<div class="history" name="history"></div>
 
-	<div class="message" style="display: {{m.enabled ? 'block': 'none'}}">
+	<div class="message" style="display: {{ (m.serviceData.connectionStatus === 'connected' || m.serviceData.connectionStatus === 'disconnected') ? 'block': 'none'}}">
 		<input type="text" placeholder="Write a message..." value="{{m.msg}}" onkeydown="self.onKeydown(e);">
 	</div>
-	<div class="send" style="display: {{m.enabled ? 'block': 'none'}}">
+	<div class="send" style="display: {{ (m.serviceData.connectionStatus === 'connected' || m.serviceData.connectionStatus === 'disconnected') ? 'block': 'none'}}">
 		<button onclick="self.send();">Send</button>
 	</div>
 </template>
 
+
+<template name="Tpl_message">
+	<div class="historyMessage {{ m.isMy ? 'isMy' : 'isNotMy' }}">
+		{{ m.message }}
+		<div class="date">{{ m.date }}</div>
+	</div>
+</template>

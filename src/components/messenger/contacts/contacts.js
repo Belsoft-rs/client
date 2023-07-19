@@ -3,9 +3,7 @@ import css from "./contacts.css";
 css.install();
 
 import Popup from "../../ui/popup/popup.js";
-
 import account from "../../../services/account.js";
-import chatManager from "../../../services/chatManager.js";
 
 const contacts = class extends HTMLElement {
 	#$container;
@@ -20,32 +18,33 @@ const contacts = class extends HTMLElement {
 
 	connectedCallback() {
 		this.#$contacts = new Tpl_contacts({
-			search: '',
-			contacts: chatManager.model.data.contactList
+			search: ''
 		}, this);
 		this.appendChild(this.#$contacts);
+		this.#$container = this.#$contacts.querySelector("div[name='contactList']");
 
 		this.#$contacts.model.addEventListener('change', 'search', () => {
 			this.reflow();
 		});
 
-		this.#$container = this.#$contacts.querySelector("div[name='contactList']");
-		chatManager.model.addEventListener('change', /contactList\.*/, (cfg) => {
-			this.add(cfg.newValue);
+		account.model.addEventListener('change', /^contactList$/, (cfg) => {
+			cfg.newValue.forEach(contact => this.add(contact, true));
 		});
 
-		chatManager.model.addEventListener('change', 'contact', cfg => {
+		account.model.addEventListener('set', /^contactList\..*$/, (cfg) => {
+			if (cfg.path !== 'contactList.length') {
+				console.log('set contact:', cfg);
+				this.add(cfg.newValue);
+			}
+		});
+
+		account.model.addEventListener('change', 'selectedContact', cfg => {
 			this.#contacts[cfg.newValue.address].querySelector('.contact').classList.add('selected');
 			if (cfg.oldValue && cfg.oldValue.address !== cfg.newValue.address) {
 				this.#contacts[cfg.oldValue.address].querySelector('.contact').classList.remove('selected');
 			}
 		});
-
-		account.getContactList().then(contacts => {
-			contacts.forEach(contact => this.add(contact, true));
-		});
 	}
-
 
 	create() {
 		this.#$newContact = new Tpl_newContact({
@@ -59,9 +58,10 @@ const contacts = class extends HTMLElement {
 	saveContact() {
 		const name = this.#$newContact.model.data.name;
 		const username = this.#$newContact.model.data.username;
+
 		account.addContact(username, name).then(() => {
 			account.getAddress(username).then(addr => {
-				chatManager.contactItemAdd({name: name, username: username, address: addr});
+				account.model.data.contactList.push({name: name, username: username, address: addr});
 			});
 			this.#$popupNewContact.close();
 		}).catch(e => {
@@ -71,10 +71,8 @@ const contacts = class extends HTMLElement {
 
 	add(contact, noReflow) {
 		if (!this.#contacts[contact.address]) {
-			const $contact = new Tpl_contact_item(contact, this);
+			const $contact = this.#contacts[contact.address] = new Tpl_contact_item(contact, this);
 			this.#$container.appendChild($contact);
-			this.#contacts[contact.address] = $contact;
-			this.#$contacts.model.data.contacts.push(contact);
 			if (!noReflow) {
 				this.reflow();
 			}
@@ -82,7 +80,7 @@ const contacts = class extends HTMLElement {
 	}
 
 	reflow() {
-		this.#$contacts.model.data.contacts.forEach(contact => {
+		account.model.data.contactList.forEach(contact => {
 			let $contact = this.#contacts[contact.address];
 			const search = this.#$contacts.model.data.search.toLowerCase();
 			if (
@@ -103,8 +101,8 @@ const contacts = class extends HTMLElement {
 	}
 
 	select(contact) {
-		chatManager.currentSet(contact);
-		console.log(contact);
+		console.log('[contact] select:', contact);
+		account.selectContact(contact);
 	}
 };
 

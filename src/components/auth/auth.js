@@ -7,6 +7,7 @@ import account from "../../services/account.js";
 const Auth = class extends HTMLElement {
 	#$auth;
 	#$register;
+	#$mainButton;
 
 	constructor() {
 		super();
@@ -21,6 +22,7 @@ const Auth = class extends HTMLElement {
 			phrase: ''
 		}, this);
 		this.appendChild(this.#$auth);
+		this.#$mainButton = this.#$auth.querySelector("button");
 	}
 
 	registerPage() {
@@ -29,21 +31,29 @@ const Auth = class extends HTMLElement {
 			username: ''
 		}, this);
 		this.appendChild(this.#$register);
+		this.#$mainButton = this.#$register.querySelector("button");
+	}
+
+	onKeydown(actionName, e) {
+		if (e.code === "Enter") {
+			this[actionName]();
+		}
 	}
 
 	auth() {
-		account.init(this.#$auth.model.data.phrase).then(username => {
-			console.log('username:', username);
-			if (!username) {
+		this.#$mainButton.setAttribute('disabled', '');
+		account.init(this.#$auth.model.data.phrase).then(() => {
+			console.log('username:', account.model.data.username);
+			if (!account.model.data.username) {
 				this.registerPage();
 			}
 		});
 	}
 
 	register() {
+		this.#$mainButton.setAttribute('disabled', '');
 		const username = this.#$register.model.data.username;
 		account.register(username);
-		console.log('username:', username);
 	}
 };
 

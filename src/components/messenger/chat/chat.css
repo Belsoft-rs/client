@@ -4,14 +4,61 @@ x-tpl_chat {
 	display: grid;
 	grid-gap: 0;
 	padding: 0;
-	grid-template-rows: 50px auto 40px;
-	grid-template-columns: auto 60px;
+	grid-template-rows: fit-content(50px) auto 40px;
+	grid-template-columns: auto 100px;
 	grid-template-areas: 'chatInfo chatInfo' 'chatHistory chatHistory' 'chatMessage chatSend' ;
 }
 
 x-tpl_chat .info {
 	grid-area: chatInfo;
 	display: block;
+	padding-top: 10px;
+	background: rgb(21, 17, 38);
+	border-left: 1px solid black;
+}
+
+x-tpl_chat .info div {
+	padding: 0 20px;
+}
+
+x-tpl_chat .info .address {
+	color: rgb(136, 136, 136);
+	font-size: 12px;
+}
+
+x-tpl_chat .info .status {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+x-tpl_chat .info .status.disconnected {
+	color: mediumvioletred;
+}
+
+x-tpl_chat .info .status.connecting {
+	color: yellow;
+}
+
+x-tpl_chat .info .status.connectionRequest {
+	color: cyan;
+}
+
+x-tpl_chat .info .status.connected {
+	color: green;
+}
+
+x-tpl_chat .info .status.handshake {
+	color: darkorange;
+}
+
+
+x-tpl_chat .info .connectionConfirm {
+	border-top: 1px solid black;
+	padding: 20px 20px;
+}
+
+x-tpl_chat .info .connectionConfirm button {
+	margin: 0 0 0 20px;
 }
 
 x-tpl_chat .history {
@@ -62,7 +109,7 @@ div.fromAddress, div.toAddress {
 }
 
 .historyMessage {
-	padding: 10px 20px;
+	padding: 10px 10px 5px 20px;
 	width: 450px;
 	border-radius: 8px;
 	box-sizing: border-box;
@@ -85,47 +132,8 @@ div.fromAddress, div.toAddress {
 	background: #16102d;
 }
 
-/*
-#message, #fromAddress, #toAddress {
-	width:500px;
-	padding:5px;
-	border: 1px solid #222;
-	border-radius: 4px;
-	background: #666;
-}
-.date {
-	font-size: 10px;
+.historyMessage .date {
+	text-align: right;
+	font-size: 12px;
 	color: gray;
-	margin-bottom: 10px;
 }
-
-
-label {
-	text-align: left;
-	display:inline-block;
-	width: 100px;
-}
-div.history {
-	margin: 10px auto;
-	padding: 10px;
-	box-sizing: border-box;
-	width: 600px;
-	height: 500px;
-	border: 1px solid #222;
-	border-radius: 4px;
-	overflow-y: scroll;
-	background: url("https://qph.fs.quoracdn.net/main-qimg-8b585fb4a5c9fedbb899cfb0cf0331a7");
-}
-::-webkit-scrollbar {
-	width: 12px;
-}
-
-::-webkit-scrollbar-track {
-	-webkit-box-shadow: inset 0 0 6px #000;
-	background: #0b0e17;
-}
-
-::-webkit-scrollbar-thumb {
-	border-radius: 6px;
-	-webkit-box-shadow: inset 0 0 6px #555;
-}*/
