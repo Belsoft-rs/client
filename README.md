@@ -42,3 +42,7 @@ If you want to change the parachain address that is used to establish p2p connec
 For ease of viewing and testing, this page has already been deployed on github pages and is available at:
 
     https://belsoft-rs.github.io/diffychat/
+
+### Demo video
+
+[![Preview](https://github-production-user-asset-6210df.s3.amazonaws.com/126072104/251771167-7fee3eb1-b81e-4ce2-ac20-1ffd6b04216a.png)](https://media.belsoft.rs/diffychat/diffychat.mp4)
